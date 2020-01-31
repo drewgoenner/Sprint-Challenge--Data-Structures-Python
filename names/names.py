@@ -30,7 +30,7 @@ class BSearchTree:
 	def contains(self, target):
 		# if the value of the node equals the target, return true
 		if self.value == target:
-			return true
+			return True
 		# if the value of the node is less than the target, check to the right
 		if self.value < target:
 		# if there is no node to the right, return false
@@ -58,10 +58,25 @@ names_2 = f.read().split("\n")  # List containing 10000 names
 f.close()
 
 duplicates = []
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# *****This runs in O(n^2), thanks to the SUPER efficient double for loops at an awesome 6 or so seconds******
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
+
+
+#******This one runs in O(log n) thanks to the binary search tree, bumping the time down to around .14 seconds********
+#create the bst using names
+names_tree = BSearchTree('names')
+#add the names from names_1 to the bst
+for name in names_1:
+	names_tree.insert(name)
+#go through the names in names_2
+for name in names_2:
+	if names_tree.contains(name):
+		duplicates.append(name)
+
+#if names_2 has a name that is in the bst, add it to duplicates
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
