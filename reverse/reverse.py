@@ -44,4 +44,5 @@ class LinkedList:
 
   def reverse_list(self):
     # TO BE COMPLETED
-    pass
+    # We need to make it so that we start at the beginning of the list and move through, basically switching the direction of the pointers so we essentially change the tail to the head and vice versa
+    
